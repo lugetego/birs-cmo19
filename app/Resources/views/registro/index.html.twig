@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+</div>
+
+<div class="container-fluid">
+<h4 class="my-4 text-secondary">Lista de registros</h4>
+
+<button type="button" class="btn btn-outline-info mb-4" data-toggle="modal" data-target="#emailsModal">
+        <i class="fa fa-envelope"></i> Correos electrónicos
+</button>
+
+
+<table id="registry" class="table table-sm table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha de nacimiento</th>
+                <th>Correo</th>
+                <th>Residencia</th>
+                <th>Universidad</th>
+                <th>Posición</th>
+                <th>Asesor</th>
+                <th>Apoyo</th>
+                <th>Aceptado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registro in registros %}
+            <tr>
+                <td><a href="{{ path('registro_show', { 'slug': registro.slug }) }}">{{ registro.nombres }} {{ registro.apellidos}} </a></td>
+                <td>{{ registro.nacimiento|localizeddate('long', 'none') }}</td>
+                <td>{{ registro.email }}</td>
+                <td align="center">{{ registro.pais }}</td>
+                <td>{{ registro.universidad }}</td>
+                <td>{{ registro.estatus }}</td>
+                <td>{{ registro.nombreProfesor }}</td>
+                <td class="text-center">
+                {% if registro.apoyo == 'Si' %}
+                    Si
+                {% elseif registro.apoyo == 'Preferible' %}
+                    Preferible
+                {% elseif registro.apoyo == 'No' %}
+                    No
+                {% endif %}
+                </td>
+
+                <td class="text-center">{% if registro.aceptado == true %}
+                                <span class="label label-success ">Si</span>
+                            {% elseif registro.aceptado is null %}
+                                <span class="label label-warning "> Pendiente</span>
+                            {% elseif registro.aceptado == false %}
+                                <span class="label label-danger"> No</span>
+                            {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+<!-- Modal -->
+        <div class="modal fade" id="emailsModal" tabindex="-1" role="dialog" aria-labelledby="emailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailsModalLabel">{{ evento }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body py-3">
+                        {% for registro in registros %}
+                            {{ registro.email }}{{ not loop.last ? ',' }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/b-html5-1.5.1/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#registry').DataTable({
+            } );
+        } );
+    </script>
+{% endblock %}

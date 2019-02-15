@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="mt-5">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('registro_index') }}">Todos los registros</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{  registro.nombres }} {{ registro.apellidos}}</li>
+            </ol>
+
+
+        </nav>
+
+    </div>
+
+    <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#evalModal">
+        <i class="fa fa-check"></i> Evaluar </button>
+
+
+    <h3 class="text-secondary my-4">{{ registro.nombres }} {{ registro.apellidos}} <small>{{ registro.email }}</small></h3>
+
+    <div class="row">
+        <div class="col">
+            <h5 class="text-secondary"><i class="fa fa-user"></i> Datos personales</h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-5 text-muted">Fecha de nacimiento:</div>
+                        <div class="col-md-7">{{ registro.nacimiento|localizeddate('long', 'none') }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 text-muted">Lugar de nacimiento:</div>
+                        <div class="col-md-7">{{ registro.lugar }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 text-muted">País residencia:</div>
+                        <div class="col-md-7">{{ registro.pais }}</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-5 text-muted">Email:</div>
+                        <div class="col-md-7">{{ registro.email }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5 class="text-secondary"><i class="fa fa-graduation-cap"></i> Datos académicos</h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-3 text-muted">Universidad:</div>
+                        <div class="col-md-9">{{ registro.universidad }}</div>
+                    </div>
+                    <div class="row mb-2 boder">
+                        <div class="col-md-3 text-muted">Estatus:</div>
+                        <div class="col-md-9">{{ registro.estatus }}</div>
+                    </div>
+                    <div class="row mb-2 boder">
+                        <div class="col-md-3 text-muted">Asesor:</div>
+                        <div class="col-md-9">{{ registro.nombreProfesor }} <small>{{ registro.emailProfesor }}</small></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-secondary mt-4"><i class="fa fa-search"></i> Área de investigación</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-12 text-justify">{{ registro.area }}</div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-secondary mt-4"><i class="fa fa-group"></i> Grupos de investigación</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-12 text-justify">{{ registro.grupos | nl2br}}</div>
+            </div>
+        </div>
+    </div>
+    <h5 class="text-secondary mt-4"><i class="fa fa-file"></i> Lista de publicaciones</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-12 text-justify">{{ registro.publicaciones|nl2br }}</div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-secondary mt-4"><i class="fa fa-check"></i> Propósito de asistencia</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-12 text-justify">{{ registro.proposito }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border">
+        <div class="col-md-6">
+            {% if registro.apoyo == 'Si' %}
+                <div class="my-2 pt-2 mb-4">
+                    <div class=" my-2 alert alert-success col-md-12" role="alert">
+                        Si requiere apoyo económico
+                    </div>
+                </div>
+            {% elseif registro.apoyo == 'No' %}
+                <div class="my-2 pt-2 mb-4">
+                    <div class="alert alert-danger col-md-12" role="alert">
+                        No requiere apoyo económico
+                    </div>
+                </div>
+            {% elseif registro.apoyo == 'Preferible' %}
+                <div class="my-2 pt-2 mb-4">
+                    <div class="alert alert-info col-md-12" role="alert">
+                        <div class="col-md-12">Preferiblemente requiere apoyo económico</div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if registro.lecturas %}
+                <div class="my-2 alert alert-success col-md-12" role="alert">
+                    Está de acuerdo en que se le asignará un grupo de investigación, y se le asignarán lecturas a realizar antes de la conferencia
+                </div>
+            {% else %}
+                <div class="my-2 alert alert-danger col-md-12" role="alert">
+                    <div class="col-md-12">No está de acuerdo en que se le asignará un grupo de investigación, y se le asignarán lecturas a realizar antes de la conferencia</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="font-italic text-right small">Registro creado: {{ registro.createdAt |localizeddate('long', 'none') }}</div>
+    {% if  registro.modifiedAt %}
+        <div class="font-italic text-right small">Registro modificado: {{ registro.modifiedAt |localizeddate('long', 'none') }}</div>
+    {% endif %}
+
+
+
+    <div class=""
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="evalModal" tabindex="-1" role="dialog" aria-labelledby="evalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{ registro.slug }}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-3">
+                    {{  render(controller('AppBundle:Registro:eval', {'slug': registro.slug})) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+

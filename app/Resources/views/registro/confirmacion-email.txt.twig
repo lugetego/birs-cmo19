@@ -1,0 +1,52 @@
+{{ evento }}
+
+Apreciado(a) {{ registro.apellidos|title }} {{ registro.nombres}},
+
+Gracias por indicar su interés al BIRS-CMO Number Theory in the Americas 2019,
+que se llevará a cabo del 11 al 16 de agosto 2019.
+
+Recibimos los siguientes datos en su registro:
+
+Información personal
+
+Lugar de nacimiento: {{ registro.lugar }}
+Fecha de nacimiento: {{ registro.nacimiento|localizeddate('long', 'none') }}
+Correo electrónico: {{ registro.email }}
+País: {{ registro.pais }}
+
+Información académica
+
+Institución: {{ registro.universidad }}
+Posición actual: {{ registro.estatus }}
+Nombre del asesor(a) de doctorado: {{ registro.nombreProfesor }}
+Correo electrónico del asesor: {{ registro.emailProfesor }}
+
+Área de investigación:
+{{ registro.area }}
+
+Grupos de investigación:
+{{ registro.grupos }}
+
+Lista de publicaciones:
+{{ registro.publicaciones }}
+
+Proósito de asistir:
+{{ registro.proposito }}
+
+{% if registro.apoyo == 'Si' %}
+Si requiere apoyo económico
+{% elseif registro.apoyo == 'No' %}
+No requiere apoyo económico
+{% elseif registro.apoyo == 'Preferible' %}
+Preferiblemente requiere apoyo económico
+{% endif %}
+
+{% if registro.lecturas %}
+Estoy de acuerdo en que de ser aceptado/a, se me asignará un grupo de investigación, y se me asignarán lecturas a realizar antes de la conferencia
+{% else %}
+No estoy de acuerdo en que de ser aceptado/a, se me asignará un grupo de investigación, y se me asignarán lecturas a realizar antes de la conferencia
+{% endif %}
+
+Saludos cordiales,
+
+Comité organizador.
