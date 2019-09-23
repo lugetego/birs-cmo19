@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+</div>
+
+<div class="container">
+
+
+<div>&nbsp;</div>
+
+<table id="registry" class="table table-sm table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+            <tr>
+                <th>Were you a project group leader?</th>
+                <th>What is your current career stage?</th>
+                <th>Created at</th>
+                <th>Show survey</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for registro in registros %}
+            <tr>
+
+                <td class="text-center">
+                    {% if registro.leader  %}Yes{% else  %}No{% endif %}
+                </td>
+                <td>{{ registro.stage }}</td>
+                <td>{% if registro.createdAt is null %} {{ 'no date' }} {% else %} {{ registro.createdAt|date }}{% endif %}</td>
+
+                <td class="text-center"><a href="{{ path('survey_show', { 'id': registro.id }) }}"><i class="fa fa-search"></i> </a></td>
+
+{#
+                <td class="text-center">{% if registro.aceptado == true %}
+                                <span class="label label-success ">Si</span>
+                            {% elseif registro.aceptado is null %}
+                                <span class="label label-warning "> Pendiente</span>
+                            {% elseif registro.aceptado == false %}
+                                <span class="label label-danger"> No</span>
+                            {% endif %}
+                </td> #}
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/b-1.5.1/b-html5-1.5.1/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#registry').DataTable({
+
+
+            pageLength: 15,
+
+            } );
+        } );
+    </script>
+{% endblock %}

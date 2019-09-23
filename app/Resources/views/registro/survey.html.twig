@@ -1,0 +1,280 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'registro/form_errors.html.twig' %}
+
+{% block body %}
+
+    {{  form_errors(form) }}
+
+    <div class="py-3 text-center">
+        <h4>{{ evento }}</h4>
+        <h5 class="mt-3">Number Theory in the Americas </h5>
+    </div>
+
+    <p class="col-md-10 col-sm-12">
+    <h3 class="text-center text-secondary mb-4">Survey</h3>
+    {{ form_start(form) }}
+
+    <h4 class="text-secondary border-bottom my-4 pb-2"></h4>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="inputleader">Were you a project group leader?</label>
+            <div class="col-md-6">{{ form_widget(form.leader, {'attr': {'class': 'form-control'} } ) }}</div>
+            <div>{{ form_errors(form.leader) }}</div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="inputstage">What is your current career stage?</label>
+            <div>{{ form_widget(form.stage, {'attr': {'class': 'form-control','placeholder':'Current career stage'}}) }}</div>
+            <div>{{ form_errors(form.stage) }}</div>
+        </div>
+    </div>
+    <br>
+
+    <h4 class="text-secondary border-bottom my-4 pb-2">Section 1: Questions about the workshop schedule.</h4>
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q1">1) How was the balance between time spent in conference-wide activities
+                (e.g., speed talks, career panel, final reports) versus time spent working in small groups?
+                Please select all statements that you agree with.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s1q1 %}
+                <div class="form-check">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+            <div class="form-group col-md-6 col-sm-12 form-check">{{ form_widget(form.s1q1other, {'attr': {'class': 'form-control','placeholder':'Other'}}) }}</div>
+            {{ form_errors(form.s1q1) }}
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q1">1.1) Please write any additional comments that you may have on the structure of the
+                conference below. In particular, if you have any ideas for new conference-wide activities, please propose them below</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s1q1b, {'attr': {'class': 'form-control','placeholder':'Additional comments', 'rows':'3' } } )   }}
+            {{ form_errors(form.s1q1b) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q2">2) Which of the following describe your thoughts concerning the speed talks (please select all that apply):</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s1q2 %}
+                <div class="form-check">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+            <div class="form-group col-md-6 col-sm-12 form-check">{{ form_widget(form.s1q2other, {'attr': {'class': 'form-control','placeholder':'Other'}}) }}</div>
+            {{ form_errors(form.s1q2) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q2b">2.1) Please write any additional comments that you may have on the speed talks below.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s1q2b, {'attr': {'class': 'form-control','placeholder':'Additional comments', 'rows':'3' } } )   }}
+            {{ form_errors(form.s1q2b) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q3">3) Which of the following describe your thoughts concerning the career panel (please select all that apply):</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s1q3 %}
+                <div class="form-check">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+            {{ form_errors(form.s1q3) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q3b">3.1) Please write any additional comments that you may have on the career panel below.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s1q3b, {'attr': {'class': 'form-control','placeholder':'Additional comments', 'rows':'3' } } )   }}
+            {{ form_errors(form.s1q3b) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q4">4) Which of the following describe your thoughts concerning the free afternoon on Wednesday (please select all that apply):</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s1q4 %}
+                <div class="form-check">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+            {{ form_errors(form.s1q4) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q4b">4.1) Please write any additional comments that you may have on the free afternoon below.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s1q4b, {'attr': {'class': 'form-control','placeholder':'Additional comments', 'rows':'3' } } )   }}
+            {{ form_errors(form.s1q4b) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q5">5) Which of the following describe your thoughts on the final presentations (please select all that apply)?</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s1q5 %}
+                <div class="form-check  ">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label '}}) }}
+                </div>
+            {% endfor %}
+            {{ form_errors(form.s1q5) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs1q5b">5.1) Please write any additional comments that you may have on the final presentations below.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s1q5b, {'attr': {'class': 'form-control','placeholder':'Additional comments', 'rows':'3' } } )   }}
+            {{ form_errors(form.s1q5b) }}
+        </div>
+    </div>
+
+    <h4 class="text-secondary border-bottom my-4 pb-2">Section 2: Questions about Project Groups</h4>
+    <div class="row">
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q1">1) How many people were in your project group?</label>
+            <div class="col-md-3 col-sm-12">{{ form_widget(form.s2q1, {'attr': {'class': 'form-control'} } ) }}</div>
+            <div>{{ form_errors(form.s2q1) }}</div><br>
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q2">2) How did you feel about the size of your project group?</label>
+            <div class="col-md-3 col-sm-12">{{ form_widget(form.s2q2, {'attr': {'class': 'form-control'} } ) }}</div>
+            <div>{{ form_errors(form.s2q2) }}</div><br>
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q3">3) Did you complete all of the background reading that was assigned by your project group leader before showing up?</label>
+            <div class="col-md-3 col-sm-12">{{ form_widget(form.s2q3, {'attr': {'class': 'form-control'} } ) }}</div>
+            <div>{{ form_errors(form.s2q3) }}</div><br>
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q4">4) Did you feel adequately prepared for working with your project group? Explain.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q4, {'attr': {'class': 'form-control','placeholder':'Explain', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q4) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q5">5) Did you feel that the members of your project group had similar enough backgrounds that it was possible to work together productively?</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q5, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q5) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q6">6) Are there any additional resources that might have been beneficial in preparing for working with your project group? If so, please describe them below.</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q6, {'attr': {'class': 'form-control','placeholder':'Please describe', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q6) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q7">7) Please describe the makeup of your ideal project group (e.g., number of project group leaders, number of senior members, number of junior members).</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q7, {'attr': {'class': 'form-control','placeholder':'Please describe', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q7) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q8">8) Does your project group expect to write a paper together after the workshop?</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q8, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q8) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q9">9) Was this conference helpful in connecting you with new people that you may wish to collaborate with in the future (excluding any papers that might come directly from your work at the conference)?
+            </label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q9, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q9) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q10">10) How did you feel about collaborating in Spanish/Portunol? (Please select all statements that you agree with.)</label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {% for child in form.s2q10 %}
+                <div class="form-check">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+            <div class="form-group col-md-6 col-sm-12 form-check">{{ form_widget(form.s2q10other, {'attr': {'class': 'form-control','placeholder':'Other'}}) }}</div>
+            {{ form_errors(form.s2q10) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q11">11) Is there anything that the organizers could have done to better facilitate the time spent working in project groups?
+            </label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q11, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q11) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q12">12) Do you have any other comments about your experience of working in a project group, or suggestions for improvement?
+            </label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q12, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q12) }}
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs2q13">13) Please list some names of researchers that might make good project group leaders if we were to hold a similar conference in the future. (Feel free to nominate yourself!)
+            </label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s2q13, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s2q13) }}
+        </div>
+
+    </div>
+
+    <h4 class="text-secondary border-bottom my-4 pb-2">Section 3: Other Thoughts</h4>
+    <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="inputs3q1">If you have any comments or suggestions that were not covered in previous questions, please state them below.
+            </label>
+        </div>
+        <div class="form-group col-md-12 col-sm-12">
+            {{ form_widget(form.s3q1, {'attr': {'class': 'form-control','placeholder':'Comment', 'rows':'3' } } )   }}
+            {{ form_errors(form.s3q1) }}
+        </div>
+    </div>
+
+
+    {{ form_widget(form) }}
+
+    <input class="btn btn-success my-5 btn-lg btn-block" type="submit" value="Send" />
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="{{ asset('js/onChange.js')}}"></script>
+
+{% endblock %}
+

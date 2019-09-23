@@ -24,7 +24,7 @@ class RegistroType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(1967,2001),
+                'years'=> range(1900,2001),
                 'label'=>'Fecha de nacimiento',
                 'required'=>true,
 

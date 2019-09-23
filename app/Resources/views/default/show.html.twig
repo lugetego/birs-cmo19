@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="mt-5">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('survey_results') }}">All surveys </a></li>
+                <li class="breadcrumb-item active" aria-current="page">Leader:{% if registro.leader  %} Yes{% else  %} No{% endif %}, {{ registro.stage }}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <br>
+            <h5 class="text-secondary"><i class="fa fa-calendar"></i> Section 1: Questions about the workshop schedule.</h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">1) How was the balance between time spent in conference-wide activities (e.g., speed talks, career panel, final reports) versus time spent working in small groups? Please select all statements that you agree with.</div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s1q1 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">1.1) Please write any additional comments that you may have on the structure of the conference below. In particular, if you have any ideas for new conference-wide activities, please propose them below</div>
+                        <div class="col-md-6">
+                            {{ registro.s1q1b }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">2) Which of the following describe your thoughts concerning the speed talks (please select all that apply):
+                        </div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s1q2 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">2.1) Please write any additional comments that you may have on the speed talks below.
+                        </div>
+                        <div class="col-md-6">
+                            {{ registro.s1q2b }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">3) Which of the following describe your thoughts concerning the career panel (please select all that apply):
+                        </div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s1q3 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">3.1) Please write any additional comments that you may have on the career panel below.
+                        </div>
+                        <div class="col-md-6">
+                            {{ registro.s1q3b }}
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">4) Which of the following describe your thoughts concerning the free afternoon on Wednesday (please select all that apply):
+                        </div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s1q4 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">4.1) Please write any additional comments that you may have on the free afternoon below.
+                        </div>
+                        <div class="col-md-6">
+                            {{ registro.s1q4b }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">5) Which of the following describe your thoughts on the final presentations (please select all that apply)?
+                        </div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s1q5 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">5.1) Please write any additional comments that you may have on the final presentations below.
+                        </div>
+                        <div class="col-md-6">
+                            {{ registro.s1q5b }}
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <br>
+            <h5 class="text-secondary"><i class="fa fa-users"></i> Section 2: Questions about Project Groups</h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">1) How many people were in your project group?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q1 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">2) How did you feel about the size of your project group?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q2 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">3) Did you complete all of the background reading that was assigned by your project group leader before showing up?
+                        </div>
+                        <div class="col-md-6">{% if registro.s2q3  %}Yes{% else  %}No{% endif %}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">4) Did you feel adequately prepared for working with your project group? Explain.
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q4 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">5) Did you feel that the members of your project group had similar enough backgrounds that it was possible to work together productively?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q5 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">6) Are there any additional resources that might have been beneficial in preparing for working with your project group? If so, please describe them below.
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q6 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">7) Please describe the makeup of your ideal project group (e.g., number of project group leaders, number of senior members, number of junior members).
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q7 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">8) Does your project group expect to write a paper together after the workshop?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q8 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">9) Was this conference helpful in connecting you with new people that you may wish to collaborate with in the future (excluding any papers that might come directly from your work at the conference)?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q9 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">10) How did you feel about collaborating in Spanish/Portunol? (Please select all statements that you agree with.)
+                        </div>
+                        <div class="col-md-6">
+                            {% for key,value in registro.s2q10 if value %}
+                                {{ value }}<br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">11) Is there anything that the organizers could have done to better facilitate the time spent working in project groups?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q11 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">12) Do you have any other comments about your experience of working in a project group, or suggestions for improvement?
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q12 }}</div>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                        <div class="col-md-6 text-muted">13) Please list some names of researchers that might make good project group leaders if we were to hold a similar conference in the future. (Feel free to nominate yourself!)
+                        </div>
+                        <div class="col-md-6">{{ registro.s2q13 }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-secondary mt-4"><i class="fa fa-comment"></i> Section 3: Other Thoughts</h5>
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <div class="row mb-2">
+                <div class="col-md-6 text-muted">If you have any comments or suggestions that were not covered in previous questions, please state them below.
+                </div>
+                <div class="col-md-6">{{ registro.s3q1 }}</div>
+            </div>            </div>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
